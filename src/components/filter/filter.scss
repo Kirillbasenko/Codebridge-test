@@ -1,0 +1,29 @@
+.filter{
+   padding-bottom: 45px;
+   &__title{
+      font-weight: 600;
+      line-height: 20px;
+      color: #363636;
+      margin-bottom: 10px;
+   }
+   &__content{
+      position: relative;
+      &::before{
+         content: url(../../../public/Vector.svg);
+         position: absolute;
+         top: 10px;
+         left: 20px;
+         z-index: 2;
+      }
+   }
+   &__input{
+      padding: 13px 204px 13px 60px;
+      background: #FFFFFF;
+      border: 1px solid #EAEAEA;
+      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+      &::placeholder{
+         color: "#575757";
+      }
+   }
+}
