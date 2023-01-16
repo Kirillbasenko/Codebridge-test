@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../hooks/hook";
+import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 
 import { searchFrom, filteredArticle } from "../../store/slices/articleSlice"
 
@@ -10,7 +10,7 @@ const Filter = () => {
    function handleInput(
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
    ) {
-      dispatch(filteredArticle());
+      dispatch(filteredArticle(e.target.value));
       dispatch(searchFrom(e.target.value));
    }
 

@@ -20,9 +20,8 @@ import "./articlesList.scss"
 const NewList: React.FC = () => {
    const dispatch = useAppDispatch()
 
-   const { articles, filterArticle, term, articlesLoadingStatus } = useAppSelector(state => state.article)
-   console.log(filterArticle);
-   
+   const { articles, articlesLoadingStatus, filterArticle, term } = useAppSelector(state => state.article)
+
    useEffect(() => {
       dispatch(getArticles())
       dispatch(searchFrom(""))

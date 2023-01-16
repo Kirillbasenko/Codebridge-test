@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-import {useHttp} from "../../hooks/http.hook"
+import { useHttp } from "../../hooks/http.hook"
 
 type Article = {
    id: number;
@@ -29,7 +29,7 @@ const initialState: ArticleState = {
 export const getArticles = createAsyncThunk(
    "article/readMessages",
    async () => {
-      const {request} = useHttp()
+      const { request } = useHttp()
       const res = await request("https://api.spaceflightnewsapi.net/v3/articles?_limit=6")
       return res
    }
@@ -42,9 +42,9 @@ const newsSlice = createSlice({
       singleArticle: (state, action: PayloadAction<Article>) => {
          state.singleArticle = action.payload
       },
-      filteredArticle: (state) => {
-         let arr = state.articles.filter(item => item.title.toLowerCase().includes(state.term.trim().toLowerCase()))
-         let arr2 = state.articles.filter(item => item.summary.toLowerCase().includes(state.term.trim().toLowerCase()))
+      filteredArticle: (state, action: PayloadAction<String>) => {
+         let arr = state.articles.filter(item => item.title.toLowerCase().includes(action.payload.trim().toLowerCase()))
+         let arr2 = state.articles.filter(item => item.summary.toLowerCase().includes(action.payload.trim().toLowerCase()))
          let arr3 = [...arr, ...arr2]
          state.filterArticle = arr3.filter((item, index) => index === arr3.indexOf(item)) as Article[]
       },
@@ -54,17 +54,17 @@ const newsSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder
-         .addCase(getArticles.pending, state => { state.articlesLoadingStatus = 'loading'})
+         .addCase(getArticles.pending, state => { state.articlesLoadingStatus = 'loading' })
          .addCase(getArticles.fulfilled, (state, action) => {
-               state.articlesLoadingStatus = 'idle';
-               state.articles = action.payload
-            })
-         .addCase(getArticles.rejected, state => { state.articlesLoadingStatus = 'error'})
-         .addDefaultCase(() => {})
+            state.articlesLoadingStatus = 'idle';
+            state.articles = action.payload
+         })
+         .addCase(getArticles.rejected, state => { state.articlesLoadingStatus = 'error' })
+         .addDefaultCase(() => { })
    }
 })
 
-const {actions, reducer} = newsSlice
+const { actions, reducer } = newsSlice
 
 export default reducer;
 

@@ -12,7 +12,7 @@ const stringMiddleware = () => (next: (arg0: { type: string; }) => any) => (acti
 }
 
 const store = configureStore({
-   reducer: {article},
+   reducer: { article },
    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(stringMiddleware),
    devTools: process.env.NODE_ENV !== "production"
 })
