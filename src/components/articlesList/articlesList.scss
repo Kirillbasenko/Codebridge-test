@@ -26,6 +26,7 @@
 .date{
    position: relative;
    padding-left: 25px;
+   color: rgba(54, 54, 54, 0.6);
    &::before{
       content: url(../../../public/date.svg);
       position: absolute;

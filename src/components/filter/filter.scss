@@ -19,11 +19,20 @@
    &__input{
       padding: 13px 204px 13px 60px;
       background: #FFFFFF;
+      font-size: 16px;
       border: 1px solid #EAEAEA;
       box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
       border-radius: 5px;
       &::placeholder{
          color: "#575757";
+      }
+   }
+}
+
+@media(max-width: 480px){
+   .filter{
+      &__input{
+         padding: 13px 70px 13px 60px;
       }
    }
 }
